@@ -23,7 +23,7 @@
         <repository>
             <id>hello-dropwizard-release</id>
             <name>hello-dropwizard-release</name>
-            <url>http://13.71.127.5:8081/repository/hello-dropwizard-release/</url>
+            <url>http://104.211.214.150:8081/repository/hello-dropwizard-release/</url>
         </repository>
     </repositories>
 
