@@ -24,8 +24,8 @@
             <repository>
             <id>releases</id>
             <url>${releasesRepo}</url>
-       </repository>
-               
+            </repository>
+        </repositories>       
                
 
     <dependencies>
