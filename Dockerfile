@@ -1,21 +1,12 @@
-FROM maven:3.5.2-jdk-8-alpine as build
+#Build 
+FROM maven:3.6.0-jdk-11-slim AS build
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+RUN mvn -f /usr/src/app/pom.xml clean package
 
-RUN mkdir /app
-
-WORKDIR /app
-
-COPY . .
-
-RUN mvn package
-
-EXPOSE 8080
-
-FROM java:8-jre-alpine
-
-RUN mkdir /app
-
-WORKDIR /app
-
-COPY --from=build /app /app
-
-CMD java -jar hello-dropwizard-1.0.jar server example.yaml
+#Built jar is assembled into the final output image
+FROM openjdk:11-jre-slim
+COPY --from=build /usr/src/app/target/hello-dropwizard-1.0.jar /usr/app/hello-dropwizard-1.0.jar
+COPY example.yaml /opt/example.yaml
+EXPOSE 8085
+ENTRYPOINT ["java","-jar","/usr/app/hello-dropwizard-1.0.jar","server","/opt/example.yaml"]
