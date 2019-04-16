@@ -39,7 +39,7 @@ COPY . .
 
 RUN mvn package
 
-EXPOSE 8080
+EXPOSE 8085
 
 FROM java:8-jre-alpine
 
