@@ -8,5 +8,5 @@ RUN mvn -f /usr/src/app/pom.xml clean package
 FROM openjdk:11-jre-slim
 COPY --from=build /usr/src/app/target/hello-dropwizard-1.0.jar /usr/app/hello-dropwizard-1.0.jar
 COPY example.yaml /opt/example.yaml
-EXPOSE 8085
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/hello-dropwizard-1.0.jar","server","/opt/example.yaml"]
